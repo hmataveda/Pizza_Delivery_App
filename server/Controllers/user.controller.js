@@ -15,7 +15,7 @@ const register = async (req, res) => {
         _id: newUSer._id,
         userName: newUSer.userName,
         emailId: newUSer.email,
-        role: newUSer.role,
+        userRole: newUSer.userRole,
       },
       secret
     );
@@ -25,11 +25,11 @@ const register = async (req, res) => {
       _id: newUSer._id,
       userName: newUSer.userName,
       emailId: newUSer.emailId,
-      role: newUSer.role,
+      userRole: newUSer.userRole,
     });
   } catch (err) {
     console.log("Error while registering the new User", err);
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 
@@ -55,7 +55,7 @@ const login = async (req, res) => {
             _id: user._id,
             emailId: user.emailId,
             userName: user.userName,
-            role: user.role,
+            userRole: user.userRole,
           },
           secret
         );
@@ -64,7 +64,7 @@ const login = async (req, res) => {
           _id: user._id,
           emailId: user.emailId,
           userName: user.userName,
-          role: user.role,
+          userRole: user.userRole,
         });
       }
     }
@@ -76,7 +76,7 @@ const login = async (req, res) => {
 
 const logout = (req, res) => {
   res.clearCookie("userToken");
-  res.json({ messgae: "successfully logged out" });
+  res.json({ messgae: "successfully loggqqed out" });
 };
 
 module.exports = { register, login, logout };

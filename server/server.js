@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const PizzaRoutes = require("./Routes/pizzaRoutes");
 const UserRoutes = require("./Routes/userRoutes");
 const FavoriteRoutes = require("./Routes/favoriteRoutes");
+const CartRoutes = require("./Routes/cartRoutes");
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +23,7 @@ app.use(
 PizzaRoutes(app);
 UserRoutes(app);
 FavoriteRoutes(app);
+CartRoutes(app);
 
 app.listen(8000, () => {
   console.log("Server is running at the port 8000");

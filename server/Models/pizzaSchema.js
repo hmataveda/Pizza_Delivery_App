@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const User = require("./userSchema");
 
-const ToppingSchema = mongoose.Schema({
-  Meats: {
+const toppingSchema = mongoose.Schema({
+  meats: {
     type: [String],
     enum: [
       "Ham",
@@ -11,11 +11,11 @@ const ToppingSchema = mongoose.Schema({
       "Pepperoni",
       "Italian Sausage",
       "Premium Chicken",
-      "bacon",
+      "Bacon",
       "Philly steak",
     ],
   },
-  Veg: {
+  veg: {
     type: [String],
     enum: [
       "Garlic",
@@ -37,34 +37,40 @@ const ToppingSchema = mongoose.Schema({
 });
 
 const PizzaSchema = mongoose.Schema({
-  method: {
-    type: String,
-    required: [true, "Delivery method is required"],
-    enum: ["Delivery", "Carryout"],
-  },
-  pizzaName: {
-    type: String,
-  },
+  // method: {
+  //   type: String,
+  //   required: [true, "Delivery method is required"],
+  //   enum: ["Delivery", "Carryout"],
+  // },
+
   size: {
     type: String,
     require: [true, "pizza size is required"],
-    enum: ["Large", "Medium", "Small"],
+    enum: ["Large", "Medium", "Small", "X-large"],
   },
+
   crust: {
     type: String,
-    enum: ["Hand Tossed", "Handmade Pan", "Hand Crust", "Brooklyn Style"],
+    enum: ["Hand Tossed", "Pan Crust", "Thin Crust", "Brooklyn Style"],
     default: "Thin",
   },
-  me: [String],
+  toppings: toppingSchema,
+  pizzaName: {
+    type: String,
+  },
+  image: {
+    type: String,
+  },
+
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+
   // Toppings: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: "ToppingSchema",
   // },
-  Toppings: ToppingSchema,
 });
 
 const Pizza = mongoose.model("Pizza", PizzaSchema);

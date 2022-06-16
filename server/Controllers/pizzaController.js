@@ -14,22 +14,22 @@ const createPizza = async (req, res) => {
     res.status(200).json(newPizza);
   } catch (err) {
     console.log("ERROR USER CREATION", err);
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 
 const getAllPizzaCreatedByAdmin = async (req, res) => {
   try {
-    const admin = await User.findOne({ role: "Owner" });
+    const admin = await User.findOne({ userRole: "Owner" });
     const PizzasByAdmin = await Pizza.find({ createdBy: admin._id }).populate(
       "createdBy",
-      "role userName"
+      "userRole userName"
     );
     console.log("got all pizza created by owner");
     res.status(201).json(PizzasByAdmin);
   } catch (err) {
     console.log("ERROR While getting all pizzas created by owner", err);
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 
@@ -40,11 +40,11 @@ const getAllPizzaCreatedByCustomer = async (req, res) => {
     const PizzasByCustomer = await Pizza.find({
       createdBy: req.loggedInuser._id,
     }).populate("createdBy");
-    res.json(PizzasByCustomer);
+    res.status(200).json(PizzasByCustomer);
     console.log("got all pizza created by Customer", PizzasByCustomer);
   } catch (err) {
     console.log("ERROR While getting all pizzas created by Customer", err);
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 
@@ -55,10 +55,10 @@ const getAllPizza = async (req, res) => {
       "createdBy",
       "userName role emailId"
     );
-    res.json(allPizza);
+    res.status(200).json(allPizza);
   } catch (err) {
     console.log("ERROR While getting all pizzas ", err);
-    res.json(err);
+    res.status(400).json(err);
   }
 };
 

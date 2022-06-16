@@ -6,13 +6,11 @@ const UserSchema = mongoose.Schema(
     userName: {
       type: String,
       required: [true, "userName is Required"],
-      unique: true,
     },
 
     emailId: {
       type: String,
       required: [true, "Email is Required"],
-      unique: true,
     },
 
     password: {
@@ -21,10 +19,11 @@ const UserSchema = mongoose.Schema(
       minlength: [4, "password must be more than 8"],
     },
 
-    role: {
+    userRole: {
       type: String,
       required: [true, "User role is required"],
-      enum: ["Owner", "Costumer"],
+      enum: ["Owner", "Customer"],
+      default: "Customer",
     },
   },
   {

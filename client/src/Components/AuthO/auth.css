@@ -1,0 +1,11 @@
+.login .eachrow,
+.register .eachrow {
+  margin: 20px;
+}
+
+.login .eachrow label,
+.register .eachrow label {
+  width: 20%;
+  text-align: end;
+  margin-right: 20px;
+}
