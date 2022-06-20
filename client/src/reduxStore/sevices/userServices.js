@@ -14,6 +14,7 @@ const register = createAsyncThunk("user/register", async (user, thunkAPI) => {
     console.log(" Suuccefully Registering in the user in client", response);
     return response.data;
   } catch (error) {
+    console.log("errro", error);
     return thunkAPI.rejectWithValue(error);
   }
 });

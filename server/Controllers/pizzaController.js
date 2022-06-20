@@ -62,9 +62,34 @@ const getAllPizza = async (req, res) => {
   }
 };
 
+const updatePizza = async (req, res) => {
+  try {
+    const UpdatePizza = await Pizza.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    console.log("Succesfully update the pizza", UpdatePizza);
+    res.status(200).json(UpdatePizza);
+  } catch (err) {
+    console.log("Error while updatin the pizza", err);
+  }
+};
+const deletePizza = async (req, res) => {
+  try {
+    const deletePizza = await Pizza.findByIdAndDelete(req.params.id);
+    console.log("Succesfully Deleted the pizza", deletePizza);
+    res.status(200).json(deletePizza);
+  } catch (err) {
+    console.log("Error while Deleting the pizza", err);
+    res.status(400).json(err);
+  }
+};
+
 module.exports = {
   createPizza,
   getAllPizzaCreatedByAdmin,
   getAllPizzaCreatedByCustomer,
   getAllPizza,
+  updatePizza,
+  deletePizza,
 };

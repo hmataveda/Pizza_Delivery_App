@@ -36,42 +36,43 @@ const toppingSchema = mongoose.Schema({
   },
 });
 
-const PizzaSchema = mongoose.Schema({
-  // method: {
-  //   type: String,
-  //   required: [true, "Delivery method is required"],
-  //   enum: ["Delivery", "Carryout"],
-  // },
+const PizzaSchema = mongoose.Schema(
+  {
+    size: {
+      type: String,
+      required: [true, "Please provide the pizza size"],
+      enum: ["Large", "Medium", "Small", "X-large"],
+    },
 
-  size: {
-    type: String,
-    require: [true, "pizza size is required"],
-    enum: ["Large", "Medium", "Small", "X-large"],
-  },
+    crust: {
+      type: String,
+      enum: ["Hand Tossed", "Pan Crust", "Thin Crust", "Brooklyn Style"],
+      required: [true, "Please provide the pizza crust"],
+    },
 
-  crust: {
-    type: String,
-    enum: ["Hand Tossed", "Pan Crust", "Thin Crust", "Brooklyn Style"],
-    default: "Thin",
-  },
-  toppings: toppingSchema,
-  pizzaName: {
-    type: String,
-  },
-  image: {
-    type: String,
-  },
+    toppings: toppingSchema,
 
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
+    pizzaName: {
+      type: String,
+    },
+    image: {
+      type: String,
+    },
+    price: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
 
-  // Toppings: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "ToppingSchema",
-  // },
-});
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const Pizza = mongoose.model("Pizza", PizzaSchema);
 module.exports = Pizza;

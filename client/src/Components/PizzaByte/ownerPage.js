@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllOwnerPizzas } from "../../reduxStore/sevices/pizzaServices";
 import Pizza from "./Pizza";
@@ -17,16 +17,7 @@ function OwnerPage() {
     if (!user._id) {
       navigate("/register");
     }
-    // if (user._id) {
-    //   async function dispatchGetallPizzas() {
-    //     try {
-    //       const response = await dispatch(getAllOwnerPizzas()).unwrap();
-    //     } catch (err) {
-    //       console.log("error ", err);
-    //     }
-    //   }
-    //   dispatchGetallPizzas();
-    // }
+    dispatch(getAllOwnerPizzas());
   }, []);
 
   return (
@@ -41,7 +32,7 @@ function OwnerPage() {
       <h4 className="text-center">Pizza's Created By Owner</h4>
       <div className="row">
         {pizzas.map((pizza) => {
-          return <Pizza pizza={pizza} />;
+          return <Pizza pizza={pizza} key={pizza._id} />;
         })}
       </div>
     </div>

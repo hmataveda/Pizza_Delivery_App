@@ -8,8 +8,6 @@ const register = async (req, res) => {
   try {
     const userObject = new User(req.body);
     const newUSer = await userObject.save();
-    console.log("newUSer", newUSer);
-    console.log("sssss", secret);
     const userToken = jwt.sign(
       {
         _id: newUSer._id,
@@ -76,7 +74,7 @@ const login = async (req, res) => {
 
 const logout = (req, res) => {
   res.clearCookie("userToken");
-  res.json({ messgae: "successfully loggqqed out" });
+  res.json({ message: "successfully logged out" });
 };
 
 module.exports = { register, login, logout };

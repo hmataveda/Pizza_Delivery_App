@@ -14,6 +14,7 @@ const PizzaRoutes = (app) => {
     pizzaController.getAllPizzaCreatedByAdmin
   );
   app.get("/api/allpizza", authenticate, pizzaController.getAllPizza);
+  app.put("/api/updatepizza/:id", authenticate, pizzaController.updatePizza);
+  app.delete("/api/deletepizza/:id", authenticate, pizzaController.deletePizza);
 };
-
 module.exports = PizzaRoutes;

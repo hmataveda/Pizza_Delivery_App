@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../reduxStore/sevices/userServices";
 import "./auth.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -7,8 +7,8 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { state: role } = useLocation();
-  console.log("dddd", role);
 
+  const { userError } = useSelector((state) => state.user);
   let [user, setUser] = useState({
     userName: "",
     emailId: "",
@@ -43,6 +43,10 @@ function Login() {
       {role ? <h3> Bussiness Account Login</h3> : <h3>Login</h3>}
       <div className="container">
         <div className="row login justify-content-center">
+          {userError &&
+            userError.map((err) => {
+              return <p className="text-center text-danger">{err}!!</p>;
+            })}
           <div className="col-8 text-center">
             <form onSubmit={handleSubmit}>
               <div className="eachrow">

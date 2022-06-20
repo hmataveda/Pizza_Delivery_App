@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { register } from "../../reduxStore/sevices/userServices";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 function Register() {
+  const { userError } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { state: role } = useLocation();
-  console.log("dddd", role);
 
   let [user, setUser] = useState({
     userName: "",
@@ -19,7 +19,6 @@ function Register() {
 
   useEffect(() => {
     if (role) {
-      console.log("coming her");
       setUser({ ...user, userRole: "Owner" });
     } else {
       setUser({ ...user, userRole: "Customer" });
@@ -35,9 +34,8 @@ function Register() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log("user", user);
       const dispatchregister = await dispatch(register(user)).unwrap();
-      console.log("Loggesin user", dispatchregister);
+      console.log("Suuceesful dispatched register", dispatchregister);
       if (role) {
         navigate("/owner/pizzaByte");
       } else {
@@ -51,9 +49,18 @@ function Register() {
   return (
     <div>
       {role ? <h3> Bussiness Account Register</h3> : <h3>Register</h3>}
+
       <div className="container">
+        {userError &&
+          userError.map((err, index) => {
+            return (
+              <p className="text-center text-danger" key={index}>
+                {err}
+              </p>
+            );
+          })}
         <div className="row register justify-content-center">
-          <div className="col-8 text-center">
+          <div className="col-9 text-center">
             <form onSubmit={handleSubmit}>
               <div className="eachrow">
                 <label htmlFor="Name">UserName</label>
@@ -61,6 +68,7 @@ function Register() {
                   type="text"
                   value={user.userName}
                   placeholder="Uername"
+                  required
                   name="userName"
                   onChange={handleInputChange}
                   onKeyPress={(e) => {
@@ -71,23 +79,17 @@ function Register() {
               <div className="eachrow">
                 <label htmlFor="Name">EmailId</label>
                 <input
-                  type="text"
+                  type="email"
                   value={user.emailId}
                   placeholder="Emaild"
                   name="emailId"
+                  required
                   onChange={handleInputChange}
                   onKeyPress={(e) => {
                     e.key === "Enter" && e.preventDefault();
                   }}
                 />
               </div>
-              {/* <div className="eachrow">
-                <label htmlFor="userRole">UserRole</label>
-                <select name="userRole" onChange={handleInputChange}>
-                  <option value="Owner">Owner</option>
-                  <option value="Customer">Customer</option>
-                </select>
-              </div> */}
               <div className="eachrow">
                 <label htmlFor="password">Password</label>
                 <input
@@ -95,6 +97,7 @@ function Register() {
                   value={user.password}
                   placeholder="password"
                   name="password"
+                  required
                   onChange={handleInputChange}
                   onKeyPress={(e) => {
                     e.key === "Enter" && e.preventDefault();
@@ -108,6 +111,7 @@ function Register() {
                   value={user.confirmPassword}
                   placeholder="ConfirmPassword"
                   name="confirmPassword"
+                  required
                   onChange={handleInputChange}
                   onKeyPress={(e) => {
                     e.key === "Enter" && e.preventDefault();

@@ -93,3 +93,14 @@
   padding: 20px;
   border: 1px solid black;
 }
+
+.customerpage .ownpizza {
+  height: 180px;
+  background-image: url("https://image.shutterstock.com/image-photo/banner-heart-shaped-pizza-place-260nw-1888897186.jpg");
+  background-position: right;
+  background-size: cover;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  border: 2px solid white;
+}

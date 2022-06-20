@@ -6,6 +6,7 @@ import Navbar from "./Components/Navbar/navbar";
 import CustomerMainPage from "./Components/PizzaByte/customerMainPage";
 import OwnerPage from "./Components/PizzaByte/ownerPage";
 import CreatePizza from "./Components/PizzaByte/createPizza";
+import UpdatePizza from "./Components/PizzaByte/updatePizza";
 import CartPage from "./Components/PizzaByte/cartPage";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/owner/pizzaByte" element={<OwnerPage />}></Route>
         <Route path="/pizzaByte" element={<CustomerMainPage />}></Route>
         <Route path="/pizzaByte/createnew" element={<CreatePizza />}></Route>
+        <Route path="/pizzaByte/update/:id" element={<UpdatePizza />}></Route>
         <Route path="/pizzaByte/cart" element={<CartPage />} />
       </Routes>
     </>

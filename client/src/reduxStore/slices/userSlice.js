@@ -4,7 +4,6 @@ import jwtDecode from "jwt-decode";
 import Cookies from "js-cookie";
 
 const userToken = Cookies.get("userToken");
-console.log("USER TOKEN", userToken);
 
 if (userToken) {
   var userPayload = jwtDecode(userToken);
@@ -12,7 +11,15 @@ if (userToken) {
 }
 let initialState = {
   user: userPayload || {},
-  userError: "",
+  userError: [],
+};
+
+const handleErrors = (state, action) => {
+  state.userError = [];
+  let error = action.payload.response;
+  for (let key of Object.keys(error.data.errors)) {
+    state.userError.push(error.data.errors[key].message);
+  }
 };
 
 const userSlice = createSlice({
@@ -21,24 +28,22 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: {
     [register.fulfilled]: (state, action) => {
-      console.log("action.payload", action.payload);
       state.user = action.payload;
-      state.userError = "";
+      state.userError = [];
     },
     [register.rejected]: (state, action) => {
-      console.log("coming in rejected", action.payload);
-      state.userError = action.payload.message;
+      handleErrors(state, action);
     },
     [login.fulfilled]: (state, action) => {
       state.user = action.payload;
-      state.userError = "";
+      state.userError = [];
     },
     [login.rejected]: (state, action) => {
-      state.userError = action.payload.message;
+      state.userError.push(action.payload.response.data.message);
     },
     [logout.fulfilled]: (state, action) => {
       state.user = {};
-      state.userError = "";
+      state.userError = [];
     },
     [logout.rejected]: (state, action) => {
       state.userError = action.payload;
