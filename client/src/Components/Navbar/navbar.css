@@ -1,6 +1,27 @@
 .navbar {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  font-size: 25px;
-  background-color: rgb(22, 94, 70);
+  font-size: 23px;
+  background-color: #845460;
+  font-family: "Redressed", cursive;
+  color: rgb(255, 255, 255);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+
+.signin a {
+  color: rgb(234, 234, 234);
+  text-decoration: none;
+}
+.navbar .cart span {
+  font-size: 19px;
+}
+
+.logo,
+.menu,
+.location,
+.cart,
+.logout {
+  cursor: pointer;
 }

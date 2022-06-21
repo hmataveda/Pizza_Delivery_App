@@ -21,16 +21,15 @@ function OwnerPage() {
   }, []);
 
   return (
-    <div className="container">
-      <h3 className="text-center">Buisness owner Page</h3>
-      <div className="m-5">
-        Create New Pizza for PizzaByte Shop{" "}
+    <div className="container owner">
+      <div className="m-3 text-center heading p-3 pt-5 mt-5 ">
+        <h4 className="p-2">Welcome PizzaByte Owner!!</h4>
         <button onClick={() => navigate("/pizzaByte/createnew")}>
           Create Pizza
         </button>
       </div>
-      <h4 className="text-center">Pizza's Created By Owner</h4>
-      <div className="row">
+
+      <div className="row justify-content-center">
         {pizzas.map((pizza) => {
           return <Pizza pizza={pizza} key={pizza._id} />;
         })}

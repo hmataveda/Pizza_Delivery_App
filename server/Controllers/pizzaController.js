@@ -4,7 +4,6 @@ const Favorite = require("../Models/FavoritesSchema");
 
 const createPizza = async (req, res) => {
   try {
-    console.log("obj", req.body);
     const PizzaObj = new Pizza({
       ...req.body,
       createdBy: req.loggedInuser._id,
@@ -35,8 +34,6 @@ const getAllPizzaCreatedByAdmin = async (req, res) => {
 
 const getAllPizzaCreatedByCustomer = async (req, res) => {
   try {
-    // const customer = req.user;// through authenticate;
-    // const customer = await User.find({ name: req.params.name });
     const PizzasByCustomer = await Pizza.find({
       createdBy: req.loggedInuser._id,
     }).populate("createdBy");
@@ -50,7 +47,6 @@ const getAllPizzaCreatedByCustomer = async (req, res) => {
 
 const getAllPizza = async (req, res) => {
   try {
-    console.log("req", req.loggedInuser);
     const allPizza = await Pizza.find({}).populate(
       "createdBy",
       "userName role emailId"
@@ -68,7 +64,7 @@ const updatePizza = async (req, res) => {
       new: true,
       runValidators: true,
     });
-    console.log("Succesfully update the pizza", UpdatePizza);
+    console.log("Succesfully updated the pizza", UpdatePizza);
     res.status(200).json(UpdatePizza);
   } catch (err) {
     console.log("Error while updatin the pizza", err);

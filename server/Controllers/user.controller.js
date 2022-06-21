@@ -35,12 +35,9 @@ const login = async (req, res) => {
   try {
     const loggedUser = req.body;
     const user = await User.findOne({ emailId: loggedUser.emailId });
-    console.log(user.userName);
     if (!user) {
       res.status(400).json({ Error: "Invalid Login" });
     } else {
-      console.log(" loggedUser.password", loggedUser.password);
-      console.log("user.password", user.password);
       const passwordcheck = await bcrypt.compare(
         loggedUser.password,
         user.password

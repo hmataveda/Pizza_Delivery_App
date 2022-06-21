@@ -3,7 +3,6 @@ import axios from "axios";
 
 const register = createAsyncThunk("user/register", async (user, thunkAPI) => {
   try {
-    console.log();
     const response = await axios.post(
       "http://localhost:8000/api/register",
       user,

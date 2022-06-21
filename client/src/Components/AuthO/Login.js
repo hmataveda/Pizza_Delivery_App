@@ -27,7 +27,6 @@ function Login() {
       e.preventDefault();
       console.log("user", user);
       const dispatchLogin = await dispatch(login(user)).unwrap();
-      console.log("LoggedIn user", dispatchLogin);
       if (role && dispatchLogin.userRole == "Owner") {
         navigate("/owner/pizzaByte");
       } else {
@@ -39,24 +38,31 @@ function Login() {
   };
 
   return (
-    <div>
-      {role ? <h3> Bussiness Account Login</h3> : <h3>Login</h3>}
-      <div className="container">
-        <div className="row login justify-content-center">
+    <div className="login pt-5">
+      <div className="container ">
+        <div className="row justify-content-center">
           {userError &&
             userError.map((err) => {
               return <p className="text-center text-danger">{err}!!</p>;
             })}
-          <div className="col-8 text-center">
+          <div className="col-lg-8  column">
             <form onSubmit={handleSubmit}>
               <div className="eachrow">
-                <label htmlFor="Email">EmailId</label>
+                {role ? (
+                  <label htmlFor="Email">Business emailId</label>
+                ) : (
+                  <label htmlFor="Email">EmailId</label>
+                )}
+
                 <input
                   type="text"
                   value={user.emailId}
                   placeholder="Emaild"
                   name="emailId"
                   onChange={handleInputChange}
+                  onKeyPress={(e) => {
+                    e.key === "Enter" && e.preventDefault();
+                  }}
                 />
               </div>
               <div className="eachrow">
@@ -64,23 +70,26 @@ function Login() {
                 <input
                   type="password"
                   value={user.password}
-                  placeholder="password"
+                  placeholder="Password"
                   name="password"
                   onChange={handleInputChange}
+                  onKeyPress={(e) => {
+                    e.key === "Enter" && e.preventDefault();
+                  }}
                 />
               </div>
               <div className="eachrow">
-                <input type="submit" value="login" />
+                <input type="submit" value="Login" />
               </div>
             </form>
-            <p>
+            <p className="text-light mt-5 ">
               New customer ? <Link to="/register">Register</Link>
             </p>
-            <p>
-              Buissness Account??{" "}
+            <p className="">
+              Business Account??{" "}
               <Link to="/login" state="Owner">
                 Login
-              </Link>
+              </Link>{" "}
               |{" "}
               <Link to="/Register" state="Owner">
                 Register

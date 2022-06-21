@@ -13,9 +13,10 @@ function PizzaForm(props) {
       meats: [],
       veg: [],
     },
-    price: 0,
+    price: 16.99,
     pizzaName: "",
-    image: "",
+    image:
+      "https://bakerpedia.com/wp-content/uploads/2017/07/41635397_m-e1501008956328-400x400.jpg",
   };
 
   const [pizza, setPizza] = useState(oldPizza || initialState);
@@ -50,12 +51,12 @@ function PizzaForm(props) {
   };
 
   return (
-    <div className="container createPizza m-5">
+    <div className="container createPizza m-5 mt-5 pt-5">
       <div className="row justify-content-center">
         <div className="col-4g-9 bg-light ">
           <h2 className="text-center p-3">Pizza Byte {title} Pizza </h2>
           <div className="sizencrust">
-            <div className="head bg-secondary p-2">
+            <div className="head p-2">
               <h4>1. Size & Crust</h4>
             </div>
             <div className="size d-flex align-items-center justify-content-around">
@@ -100,8 +101,8 @@ function PizzaForm(props) {
               })}
             </div>
           </div>
-          <div className="topping border">
-            <div className="head bg-secondary p-2">
+          <div className="topping ">
+            <div className="head  p-2">
               <h4> 2. Toppings</h4>
             </div>
             <div className="row meats justify-content-start">
@@ -148,7 +149,7 @@ function PizzaForm(props) {
           </div>
           {!customer && (
             <div>
-              <div className="head bg-secondary p-2">
+              <div className="head p-2">
                 <h4> 3. Name , Image & Price</h4>
               </div>
               <div className="name my-4">

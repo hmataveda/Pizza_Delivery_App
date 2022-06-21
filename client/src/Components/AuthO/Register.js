@@ -35,7 +35,6 @@ function Register() {
     try {
       e.preventDefault();
       const dispatchregister = await dispatch(register(user)).unwrap();
-      console.log("Suuceesful dispatched register", dispatchregister);
       if (role) {
         navigate("/owner/pizzaByte");
       } else {
@@ -47,23 +46,25 @@ function Register() {
   };
 
   return (
-    <div>
-      {role ? <h3> Bussiness Account Register</h3> : <h3>Register</h3>}
-
+    <div className="register pt-3">
       <div className="container">
-        {userError &&
-          userError.map((err, index) => {
-            return (
-              <p className="text-center text-danger" key={index}>
-                {err}
-              </p>
-            );
-          })}
-        <div className="row register justify-content-center">
-          <div className="col-9 text-center">
+        <div className="row  justify-content-center">
+          {userError &&
+            userError.map((err, index) => {
+              return (
+                <p className="text-center text-danger" key={index}>
+                  {err}
+                </p>
+              );
+            })}
+          <div className="col-lg-8 text-center column">
             <form onSubmit={handleSubmit}>
               <div className="eachrow">
-                <label htmlFor="Name">UserName</label>
+                {role ? (
+                  <label htmlFor="Name">Business name</label>
+                ) : (
+                  <label htmlFor="Name">Username</label>
+                )}
                 <input
                   type="text"
                   value={user.userName}
@@ -105,7 +106,7 @@ function Register() {
                 />
               </div>
               <div className="eachrow">
-                <label htmlFor="ConfirmPassword">ConfirmPassword</label>
+                <label htmlFor="ConfirmPassword">Confirm password</label>
                 <input
                   type="password"
                   value={user.confirmPassword}
@@ -119,17 +120,17 @@ function Register() {
                 />
               </div>
               <div className="eachrow">
-                <button>Register</button>
+                <input type="submit" value="Register" />
               </div>
             </form>
             <p>
               Have an account? <Link to="/login">Login</Link>
             </p>
             <p>
-              Buissness Account??{" "}
+              Business Account??{" "}
               <Link to="/login" state="Owner">
                 Login
-              </Link>
+              </Link>{" "}
               |{" "}
               <Link to="/Register" state="Owner">
                 Register

@@ -7,7 +7,6 @@ const userToken = Cookies.get("userToken");
 
 if (userToken) {
   var userPayload = jwtDecode(userToken);
-  console.log("userPayload", userPayload);
 }
 let initialState = {
   user: userPayload || {},
@@ -39,7 +38,8 @@ const userSlice = createSlice({
       state.userError = [];
     },
     [login.rejected]: (state, action) => {
-      state.userError.push(action.payload.response.data.message);
+      state.userError = [];
+      state.userError.push(action.payload.response.data.Error);
     },
     [logout.fulfilled]: (state, action) => {
       state.user = {};

@@ -14,12 +14,10 @@ function CreatePizza() {
   const handleClick = async (pizza) => {
     try {
       const dispatchCreate = await dispatch(createPizza(pizza)).unwrap();
-      console.log("dispatchCreate", dispatchCreate);
       if (customer) {
         const dispatchToCart = await dispatch(
           AddPizzatoCart(dispatchCreate)
         ).unwrap();
-        console.log("dispatchToCart", dispatchToCart);
         dispatch(totalItemInCart());
         navigate("/pizzaByte/cart");
       } else {

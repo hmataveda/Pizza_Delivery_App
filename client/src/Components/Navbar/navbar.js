@@ -36,40 +36,41 @@ function Navbar() {
   };
 
   return (
-    <nav>
-      <div className="row navbar text-light ">
-        <div className="col-lg-6 d-flex justify-content-center">
-          <div className="logo p-3">PizzaByte</div>
-          <div className="menu p-3" onClick={() => navigate("/pizzaByte")}>
-            {" "}
-            Menu
-          </div>
-        </div>
-        <div className="col-lg-6 d-flex justify-content-center">
-          <div className="location p-3">Location logo </div>
-          {user._id ? (
-            <>
-              <div className="signIn p-3" onClick={handleLogout}>
-                {user.userName + "!!"}Logout
-              </div>
-              {user.userRole == "Customer" && (
-                <div
-                  className="cart p-3"
-                  onClick={() => navigate("/pizzaByte/cart")}
-                >
-                  Cart {totalCount}
-                </div>
-              )}
-            </>
-          ) : (
-            <div className="signIn p-3 ">
-              <Link to="/login">Login</Link>/
-              <Link to="/register">Register</Link>
-            </div>
-          )}
+    <div className="row navbar m-0">
+      <div className="col-lg-6 d-flex justify-content-center">
+        <div className="logo p-3">PizzaByte</div>
+        <div className="menu p-3" onClick={() => navigate("/pizzaByte")}>
+          {" "}
+          Menu
         </div>
       </div>
-    </nav>
+      <div className="col-lg-6 d-flex justify-content-center">
+        <div className="location py-3 pe-3">
+          <i class="bi bi-geo-alt-fill"></i>
+        </div>
+        {user._id ? (
+          <>
+            <div className="signIn py-3 pe-4" onClick={handleLogout}>
+              {user.userName + "!!"}
+              <span className="px-3 logout">Logout</span>
+            </div>
+            {user.userRole == "Customer" && (
+              <div
+                className="cart py-3"
+                onClick={() => navigate("/pizzaByte/cart")}
+              >
+                <i className="bi bi-cart-fill pe-1"></i>
+                <span>{totalCount}</span>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="signin p-3 ">
+            <Link to="/login">Login</Link>/<Link to="/register">Register</Link>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 

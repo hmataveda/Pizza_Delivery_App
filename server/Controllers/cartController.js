@@ -5,7 +5,6 @@ AddtoCart = async (req, res) => {
   try {
     const userId = req.loggedInuser._id;
     const pizzaId = req.params.id;
-    console.log("pizzaId", pizzaId);
     const pizza = await Cart.findOne({ userId, pizzaId });
     if (pizza) {
       const updatePizzaCount = await Cart.findOneAndUpdate(
@@ -19,7 +18,10 @@ AddtoCart = async (req, res) => {
       const cartItem = new Cart({ pizzaId, userId, count: 1 });
       const newCartItem = await cartItem.save();
       console.log("newItem added to cart", newCartItem);
-      res.status(200).json(newCartItem);
+      const item = await Cart.findOne({ _id: newCartItem._id }).populate(
+        "pizzaId"
+      );
+      res.status(200).json(item);
     }
   } catch (err) {
     console.log("error while adding newItem  to cart", err);

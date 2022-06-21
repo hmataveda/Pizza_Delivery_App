@@ -5,7 +5,6 @@ const AddPizzatoCart = createAsyncThunk(
   "pizza/addtoCart",
   async (pizza, thunkAPI) => {
     try {
-      console.log("pizza", pizza);
       const response = await axios.post(
         `http://localhost:8000/api/addToCart/${pizza._id}`,
         pizza,

@@ -57,11 +57,13 @@ const PizzaSchema = mongoose.Schema(
     },
     image: {
       type: String,
+      default:
+        "https://bakerpedia.com/wp-content/uploads/2017/07/41635397_m-e1501008956328-400x400.jpg",
     },
     price: {
       type: Number,
       required: true,
-      default: 0,
+      default: 16.99,
     },
 
     createdBy: {

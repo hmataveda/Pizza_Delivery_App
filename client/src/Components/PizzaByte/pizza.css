@@ -1,17 +1,20 @@
-.sizencrust {
-  border: 1px solid rgba(0, 0, 0, 0.174);
+.createPizza {
+  font-family: "Charis SIL", serif;
+}
+.head {
+  background-color: rgba(84, 191, 241, 0.678);
 }
 .createPizza .Small {
-  background-color: rgba(144, 196, 161, 0.578);
+  background-color: rgb(255, 126, 126);
   text-align: center;
-  padding-top: 20px;
+  padding-top: 15px;
   width: 60px;
   height: 60px;
   border-radius: 50%;
   display: inline-block;
 }
 .createPizza .Medium {
-  background-color: rgba(144, 196, 161, 0.578);
+  background-color: rgb(255, 126, 126);
   text-align: center;
   padding-top: 25px;
   width: 80px;
@@ -20,7 +23,7 @@
   display: inline-block;
 }
 .createPizza .Large {
-  background-color: rgba(144, 196, 161, 0.578);
+  background-color: rgb(255, 126, 126);
   text-align: center;
   padding-top: 35px;
   width: 100px;
@@ -29,7 +32,7 @@
   display: inline-block;
 }
 .createPizza .X-large {
-  background-color: rgba(144, 196, 161, 0.578);
+  background-color: rgb(255, 126, 126);
   text-align: center;
   padding-top: 45px;
   width: 120px;
@@ -76,31 +79,114 @@
 .createPizza .meats .col-4,
 .createPizza .veg .col-4 {
   margin-bottom: 20px;
-  font-size: 18px;
+}
+
+.createPizza button {
+  border: 0;
+  background-color: rgba(220, 20, 60, 0.801);
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+.singlePizza {
+  position: relative;
+  font-family: "Charis SIL", serif;
+  color: black;
+  height: 250px;
+  padding: 30px;
+  margin: auto;
+  margin-top: 60px;
+  width: 250px;
+
+  background-color: rgba(228, 80, 35, 0.525);
+  border-radius: 40px;
+  box-shadow: rgba(79, 73, 73, 0.856) 0px 2px 8px 0px;
 }
 
 .singlePizza .pizzaimg {
-  height: 300px;
-  /* width: 300px; */
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  z-index: 1;
+  top: -50px;
+  right: 50px;
 }
-
-.cart table {
-  width: 100%;
-  border: 1px solid black;
+.singlePizza .pizzaimg .image {
+  border-radius: 50%;
+  border: 5px solid rgb(168, 96, 96);
 }
-.cart table td,
-.cart table th {
-  padding: 20px;
-  border: 1px solid black;
+.singlePizza .cartbutton {
+  padding: 10px;
+  border: 0;
+  border-radius: 10px;
+  background-color: rgba(212, 17, 17, 0.829);
 }
 
 .customerpage .ownpizza {
-  height: 180px;
-  background-image: url("https://image.shutterstock.com/image-photo/banner-heart-shaped-pizza-place-260nw-1888897186.jpg");
+  height: 200px;
+  background-image: url("https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000");
   background-position: right;
-  background-size: cover;
-  font-size: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgba(254, 208, 143, 0.788);
+  font-size: 35px;
+  border-radius: 40px;
   cursor: pointer;
-  color: white;
+  color: black;
+  font-family: "Redressed", cursive;
   border: 2px solid white;
+  box-shadow: rgba(243, 238, 238, 0.856) 0px 2px 8px 0px;
+}
+
+.ownpizza .createButton {
+  font-size: 20px;
+  background-color: rgba(255, 0, 0, 0.769);
+  padding: 5px 20px;
+  border: none;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.owner .heading,
+h2 {
+  font-family: "Charis SIL", serif;
+  color: rgb(0, 225, 255);
+}
+
+.owner .heading button {
+  border: none;
+  padding: 10px 20px;
+  background-color: rgba(241, 61, 142, 0.655);
+  border-radius: 20px;
+}
+.ownpizza {
+  margin-top: 90px;
+}
+
+.cartpage .row {
+  margin-top: 100px;
+  font-family: "Satisfy", cursive;
+}
+.cartpage .img {
+  width: 150px;
+}
+.cartpage .counts {
+  font-family: "Lobster", cursive;
+  font-size: 20px;
+  cursor: pointer;
+}
+.subtotal,
+.totalprice,
+.checkout {
+  font-size: 30px;
+  font-family: "Satisfy", cursive;
+}
+
+.checkout {
+  border: 0;
+  padding: 10px 20px;
+  margin-left: 80px;
+  background-color: rgba(255, 0, 0, 0.532);
+  border-radius: 20px;
+  box-shadow: rgba(79, 73, 73, 0.856) 0px 2px 8px 0px;
 }

@@ -14,9 +14,7 @@ function Pizza(props) {
 
   const handleDelete = async (id) => {
     try {
-      console.log("id", id);
       let dispatchDelete = await dispatch(deletePizza(id)).unwrap();
-      console.log("succefully dispatching the delete service", dispatchDelete);
     } catch (err) {
       console.log("error while dispatching the delete serv=ice", err);
     }
@@ -26,42 +24,42 @@ function Pizza(props) {
     const dispatchAddPizzaTocart = await dispatch(
       AddPizzatoCart(pizza)
     ).unwrap();
-    console.log("successfully added pizza to cart", dispatchAddPizzaTocart);
     dispatch(totalItemInCart());
     e.target.disabled = true;
-
-    console.log("dispatchAddPizzaTocart", dispatchAddPizzaTocart);
   };
   return (
-    <div className="singlePizza col-lg-4 mb-4" key={pizza._id}>
-      <div className="pizzaimg">
-        <img src={pizza.image} className="h-100 w-100" alt="image" />
-      </div>
-      <div className="d-flex bg-secondary p-3 justify-content-between ">
-        <p className="pizzaname   text-light">{pizza.pizzaName}</p>
-        <p>${pizza.price}</p>
-        {role && (
-          <button className="px-3 py-2 bg-danger" onClick={handleAddtoCart}>
-            Add to Cart
-          </button>
-        )}
+    <div className="col-lg-4 mb-4 " key={pizza._id}>
+      <div className="singlePizza ">
+        <div className="pizzaimg">
+          <img src={pizza.image} className="h-100 w-100 image" alt="image" />
+        </div>
+        <div className="d-flex flex-column justify-content-end h-100 align-items-center ">
+          <p className="pizzaname p-0 m-0">{pizza.pizzaName}</p>
+          <p className="p-2 m-0">${pizza.price}</p>
+          {role && (
+            <button className="cartbutton" onClick={handleAddtoCart}>
+              Add to Cart
+            </button>
+          )}
 
-        {!role && (
-          <div className="edit&delete">
-            <i
-              className="bi bi-pencil-square mx-3"
-              onClick={() =>
-                navigate(`/pizzaByte/update/${pizza._id}`, { state: pizza })
-              }
-            ></i>
-            <i
-              className="bi bi-archive-fill"
-              onClick={() => {
-                handleDelete(pizza._id);
-              }}
-            ></i>
-          </div>
-        )}
+          {!role && (
+            <div className="edit&delete d-flex justify-content-between  w-100">
+              <i
+                className="bi bi-pencil-square "
+                onClick={() =>
+                  navigate(`/pizzaByte/update/${pizza._id}`, { state: pizza })
+                }
+              ></i>
+
+              <i
+                className="bi bi-archive-fill "
+                onClick={() => {
+                  handleDelete(pizza._id);
+                }}
+              ></i>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

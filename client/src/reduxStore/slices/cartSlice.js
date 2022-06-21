@@ -22,10 +22,10 @@ const CartSlice = createSlice({
 
       state.cartPizzas.forEach((pizza) => {
         totalCount += pizza.count;
-        totalPrice = pizza.count * pizza.pizzaId.price;
+        totalPrice += pizza.count * pizza.pizzaId.price;
       });
       state.totalCount = totalCount;
-      state.totalPrice = totalPrice;
+      state.totalPrice = totalPrice.toFixed(2);
     },
   },
 
@@ -65,7 +65,6 @@ const CartSlice = createSlice({
     },
 
     [decreaseCartItemCount.fulfilled]: (state, action) => {
-      console.log("decreaseCartItemCount", action.payload);
       const cartItemIndex = state.cartPizzas.findIndex(
         (cartItem) => action.payload._id == cartItem._id
       );
