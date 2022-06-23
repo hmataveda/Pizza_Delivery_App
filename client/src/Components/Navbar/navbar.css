@@ -18,6 +18,23 @@
   font-size: 19px;
 }
 
+.location {
+  position: relative;
+}
+.location:hover .place {
+  display: block;
+}
+
+.location .place {
+  position: absolute;
+  right: 40px;
+  border: 2px solid rgb(216, 108, 108);
+  background-color: blanchedalmond;
+  color: black;
+  top: 0px;
+  display: none;
+}
+
 .logo,
 .menu,
 .location,

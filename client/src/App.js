@@ -8,7 +8,7 @@ import OwnerPage from "./Components/PizzaByte/ownerPage";
 import CreatePizza from "./Components/PizzaByte/createPizza";
 import UpdatePizza from "./Components/PizzaByte/updatePizza";
 import CartPage from "./Components/PizzaByte/cartPage";
-
+import Map from "./Components/maps/map";
 function App() {
   return (
     <>
@@ -22,6 +22,7 @@ function App() {
         <Route path="/pizzaByte/createnew" element={<CreatePizza />}></Route>
         <Route path="/pizzaByte/update/:id" element={<UpdatePizza />}></Route>
         <Route path="/pizzaByte/cart" element={<CartPage />} />
+        <Route path="/googlemap" element={<Map />}></Route>
       </Routes>
     </>
   );

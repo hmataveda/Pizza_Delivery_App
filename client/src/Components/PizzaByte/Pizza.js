@@ -25,10 +25,11 @@ function Pizza(props) {
       AddPizzatoCart(pizza)
     ).unwrap();
     dispatch(totalItemInCart());
+    console.log("sdsdsd", e.target);
     e.target.disabled = true;
   };
   return (
-    <div className="col-lg-4 mb-4 " key={pizza._id}>
+    <div className="col-lg-3 col-md-4 col-sm-12  mb-4 " key={pizza._id}>
       <div className="singlePizza ">
         <div className="pizzaimg">
           <img src={pizza.image} className="h-100 w-100 image" alt="image" />

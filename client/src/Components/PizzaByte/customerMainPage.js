@@ -20,10 +20,10 @@ function CustomerMainPage() {
     dispatch(getAllOwnerPizzas());
   }, []);
   return (
-    <div className=" fluid-container customerpage ">
+    <div className=" container customerpage ">
       <div className="row justify-content-center ">
         <div
-          className="col-9 ownpizza  mb-4  ps-5"
+          className="col-9 col-lg-7 ownpizza  mb-4  ps-5"
           onClick={() =>
             navigate("/pizzaByte/createnew", { state: "customer" })
           }
@@ -33,10 +33,11 @@ function CustomerMainPage() {
           <button className="createButton">Create ur Own</button>
         </div>
       </div>
-      <div className="row justify-content-center border">
-        {pizzas.map((pizza) => {
-          return <Pizza pizza={pizza} role={"customer"} key={pizza._id} />;
-        })}
+      <div className="row justify-content-center ">
+        {pizzas.length > 0 &&
+          pizzas.map((pizza) => {
+            return <Pizza pizza={pizza} role={"customer"} key={pizza._id} />;
+          })}
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ if (userToken) {
 }
 let initialState = {
   user: userPayload || {},
+  location: { lng: null, lat: null },
   userError: [],
 };
 
@@ -24,7 +25,11 @@ const handleErrors = (state, action) => {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    setUserLocation: (state, action) => {
+      state.location = action.payload;
+    },
+  },
   extraReducers: {
     [register.fulfilled]: (state, action) => {
       state.user = action.payload;
@@ -52,3 +57,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+export const { setUserLocation } = userSlice.actions;

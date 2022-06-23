@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./navbar.css";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../reduxStore/sevices/userServices";
 import { getAllCartPizzas } from "../../reduxStore/sevices/cartServices";
 import { Link, useNavigate } from "react-router-dom";
 import { totalItemInCart } from "../../reduxStore/slices/cartSlice";
-
+import { setUserLocation } from "../../reduxStore/slices/userSlice";
 function Navbar() {
   let { user } = useSelector((state) => state.user);
   let { totalCount, cartPizzas } = useSelector((state) => state.cart);
+  let [location, setlocation] = useState({ lat: null, lng: null });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,6 +27,22 @@ function Navbar() {
         }
       }
       dispatchGetallPizzas();
+      async function getCurrentLocation() {
+        function success(position) {
+          setlocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        }
+        function error() {
+          console.log("unable to retrieve error");
+        }
+        console.log("comin in here");
+        await navigator.geolocation.getCurrentPosition(success, error);
+      }
+      getCurrentLocation();
+      dispatch(setUserLocation(location));
+      console.log("sssss", location);
     }
   }, [user]);
 
@@ -33,6 +50,11 @@ function Navbar() {
     const dispatchLogout = await dispatch(logout()).unwrap();
     console.log("successfully loggedout", dispatchLogout);
     navigate("/login");
+  };
+
+  const handleLocation = (e) => {
+    console.log("coming in loca", e.target);
+    navigate("/googlemap");
   };
 
   return (
@@ -45,8 +67,12 @@ function Navbar() {
         </div>
       </div>
       <div className="col-lg-6 d-flex justify-content-center">
-        <div className="location py-3 pe-3">
-          <i class="bi bi-geo-alt-fill"></i>
+        <div className="location py-3 pe-3" onClick={handleLocation}>
+          <i className="bi bi-geo-alt-fill"></i>
+          <div className=" place ">
+            {location.lat}
+            {location.lng}
+          </div>
         </div>
         {user._id ? (
           <>
