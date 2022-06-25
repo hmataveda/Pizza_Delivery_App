@@ -12,7 +12,6 @@ function Map() {
   console.log("lo", center);
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyASN6XwiLdtI4KQU3GjJah1bqNYKo5o8Q0",
   });
   if (!isLoaded) {
     return (
