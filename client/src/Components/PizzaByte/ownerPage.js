@@ -21,9 +21,9 @@ function OwnerPage() {
   }, []);
 
   return (
-    <div className="container owner">
+    <div className=" owner">
       <div className="m-3 text-center heading p-3 pt-5 mt-5 ">
-        <h4 className="p-2">Welcome PizzaByte Owner!!</h4>
+        <h1 className="p-4">Welcome PizzaByte Owner!!</h1>
         <button onClick={() => navigate("/pizzaByte/createnew")}>
           Create Pizza
         </button>

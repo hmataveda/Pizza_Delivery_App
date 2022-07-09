@@ -14,6 +14,7 @@ const CartRoutes = (app) => {
     authenticate,
     CartConroller.deleteCartItem
   );
+  app.post("/api/payment", CartConroller.pay);
 };
 
 module.exports = CartRoutes;

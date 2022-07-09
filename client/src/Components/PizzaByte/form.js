@@ -51,7 +51,7 @@ function PizzaForm(props) {
   };
 
   return (
-    <div className="container createPizza m-5 mt-5 pt-5">
+    <div className="container createPizza mt-5 pt-5">
       <div className="row justify-content-center">
         <div className="col-4g-9 bg-light ">
           <h2 className="text-center p-3">Pizza Byte {title} Pizza </h2>

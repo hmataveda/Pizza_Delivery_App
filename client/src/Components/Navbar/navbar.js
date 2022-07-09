@@ -10,6 +10,7 @@ function Navbar() {
   let { user } = useSelector((state) => state.user);
   let { totalCount, cartPizzas } = useSelector((state) => state.cart);
   let [location, setlocation] = useState({ lat: null, lng: null });
+  let [dispMap, setDispMap] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -54,13 +55,16 @@ function Navbar() {
 
   const handleLocation = (e) => {
     console.log("coming in loca", e.target);
-    navigate("/googlemap");
+    setDispMap(!dispMap);
+    navigate("/googlemap", { state: { display: dispMap } });
   };
 
   return (
     <div className="row navbar m-0">
       <div className="col-lg-6 d-flex justify-content-center">
-        <div className="logo p-3">PizzaByte</div>
+        <div className="logo p-3" onClick={() => navigate("/pizzaByte")}>
+          PizzaByte
+        </div>
         <div className="menu p-3" onClick={() => navigate("/pizzaByte")}>
           {" "}
           Menu
@@ -69,16 +73,14 @@ function Navbar() {
       <div className="col-lg-6 d-flex justify-content-center">
         <div className="location py-3 pe-3" onClick={handleLocation}>
           <i className="bi bi-geo-alt-fill"></i>
-          <div className=" place ">
-            {location.lat}
-            {location.lng}
-          </div>
         </div>
         {user._id ? (
           <>
-            <div className="signIn py-3 pe-4" onClick={handleLogout}>
+            <div className="signIn py-3 pe-4">
               {user.userName + "!!"}
-              <span className="px-3 logout">Logout</span>
+              <span className="px-3 logout" onClick={handleLogout}>
+                Logout
+              </span>
             </div>
             {user.userRole == "Customer" && (
               <div

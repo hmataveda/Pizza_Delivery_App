@@ -1,0 +1,100 @@
+.checkoutpage {
+  font-family: "Charis SIL", serif;
+}
+.checkoutpage .row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.checkoutpage .col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.checkoutpage .col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.checkoutpage .col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.checkoutpage .col-25,
+.checkoutpage .col-50,
+.checkoutpage .col-75 {
+  padding: 0 16px;
+}
+
+.checkoutpage .container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+.checkoutpage input[type="text"] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.checkoutpage label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.checkoutpage .icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.checkoutpage .btn {
+  background-color: #3f55d1d6;
+  color: white;
+  padding: 12px;
+  display: block;
+  margin: 15px auto;
+
+  border: none;
+  width: 50%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.checkoutpage .btn:hover {
+  background-color: #6245a0;
+}
+
+.checkoutpage span.price {
+  float: right;
+  color: grey;
+}
+.checkoutpage .right {
+  border: 2px solid rgb(246, 227, 227);
+  background-color: rgb(174, 227, 240);
+  box-shadow: rgba(79, 73, 73, 0.856) 0px 2px 8px 0px;
+}
+.checkoutpage .left {
+  border: 2px solid rgb(247, 210, 210);
+  background-color: rgba(245, 105, 117, 0.715);
+  box-shadow: rgba(79, 73, 73, 0.856) 0px 2px 8px 0px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}

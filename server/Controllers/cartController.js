@@ -1,5 +1,11 @@
-const { response } = require("express");
 const Cart = require("../Models/cartSchema");
+
+const paymentkey = process.env.payment;
+console.log("paass", paymentkey);
+
+const stripe = require("stripe")(
+  "sk_test_51LJHxIFU8i3UPRgdma9tRLuwdwuZJ7fKhHXTVxjuj1IWrKYQPYNLoXHFGoPerutF2VHsRndfxm7y8ZKdKl5Sknh200PhraZX2Y"
+);
 
 AddtoCart = async (req, res) => {
   try {
@@ -17,7 +23,7 @@ AddtoCart = async (req, res) => {
     } else {
       const cartItem = new Cart({ pizzaId, userId, count: 1 });
       const newCartItem = await cartItem.save();
-      console.log("newItem added to cart", newCartItem);
+      // console.log("newItem added to cart", newCartItem);
       const item = await Cart.findOne({ _id: newCartItem._id }).populate(
         "pizzaId"
       );
@@ -33,7 +39,7 @@ getAllCartItems = async (req, res) => {
   try {
     const userId = req.loggedInuser._id;
     const CartItems = await Cart.find({ userId: userId }).populate("pizzaId");
-    console.log("CartItems", CartItems);
+    // console.log("CartItems", CartItems);
     res.status(200).json(CartItems);
   } catch (err) {
     console.log("Error while getting all my favorite Pizzas", err);
@@ -78,9 +84,33 @@ deleteCartItem = async (req, res) => {
   }
 };
 
+pay = async (req, res) => {
+  console.log("ee", parseInt(req.body.totalPrice));
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: "Total Amount",
+          },
+          unit_amount: Math.round(req.body.totalPrice) * 100,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: "payment",
+    success_url: "http://localhost:3000/pizzaByte/cart",
+    cancel_url: "http://localhost:8000/pizzaByte/cart",
+  });
+  const deleteCartItems = await Cart.deleteMany({});
+  res.json({ url: session.url });
+};
+
 module.exports = {
   AddtoCart,
   getAllCartItems,
   decreaseCartItemCount,
   deleteCartItem,
+  pay,
 };

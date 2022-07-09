@@ -1,5 +1,6 @@
 .createPizza {
   font-family: "Charis SIL", serif;
+  margin: auto;
 }
 .head {
   background-color: rgba(84, 191, 241, 0.678);
@@ -83,7 +84,7 @@
 
 .createPizza button {
   border: 0;
-  background-color: rgba(220, 20, 60, 0.801);
+  background-color: rgba(220, 20, 20, 0.596);
   border-radius: 20px;
   font-size: 20px;
 }
@@ -121,9 +122,11 @@
   border-radius: 10px;
   background-color: rgba(212, 17, 17, 0.829);
 }
-
+.customerpage {
+  background-color: rgba(175, 129, 129, 0.021);
+}
 .customerpage .ownpizza {
-  height: 200px;
+  height: 250px;
   background-image: url("https://img.freepik.com/free-photo/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden_141793-2158.jpg?w=2000");
   background-position: right;
   background-size: contain;
@@ -134,7 +137,7 @@
   cursor: pointer;
   color: black;
   font-family: "Redressed", cursive;
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-shadow: rgba(243, 238, 238, 0.856) 0px 2px 8px 0px;
 }
 
@@ -147,22 +150,29 @@
   margin-top: 20px;
 }
 
+.owner {
+  background-color: antiquewhite;
+}
 .owner .heading,
 h2 {
   font-family: "Charis SIL", serif;
-  color: rgb(0, 225, 255);
+  color: rgb(49, 46, 45);
+  text-decoration: underline;
 }
 
 .owner .heading button {
   border: none;
-  padding: 10px 20px;
-  background-color: rgba(241, 61, 142, 0.655);
+  padding: 20px 25px;
+  background-color: rgba(255, 32, 32, 0.811);
+  text-decoration-line: underline;
   border-radius: 20px;
 }
 .ownpizza {
   margin-top: 90px;
 }
-
+.cartpage {
+  background-color: rgba(204, 201, 145, 0.21);
+}
 .cartpage .row {
   margin-top: 100px;
   font-family: "Satisfy", cursive;
@@ -174,6 +184,11 @@ h2 {
   font-family: "Lobster", cursive;
   font-size: 20px;
   cursor: pointer;
+}
+.cartpage .noitems {
+  text-align: center;
+  font-size: 39px;
+  font-weight: 700;
 }
 .subtotal,
 .totalprice,

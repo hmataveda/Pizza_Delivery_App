@@ -20,7 +20,7 @@ function CustomerMainPage() {
     dispatch(getAllOwnerPizzas());
   }, []);
   return (
-    <div className=" container customerpage ">
+    <div className="  customerpage mt-3 ">
       <div className="row justify-content-center ">
         <div
           className="col-9 col-lg-7 ownpizza  mb-4  ps-5"
