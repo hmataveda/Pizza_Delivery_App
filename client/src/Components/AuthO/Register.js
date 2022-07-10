@@ -34,7 +34,9 @@ function Register() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      console.log("user", user);
       const dispatchregister = await dispatch(register(user)).unwrap();
+      console.log("dispatchregister", dispatchregister);
       if (role) {
         navigate("/owner/pizzaByte");
       } else {
